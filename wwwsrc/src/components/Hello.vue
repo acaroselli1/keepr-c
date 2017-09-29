@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>Welcome to keepr</h1>
+    <h1>Welcome to <span>k</span>eepr</h1>
     <p>Get Started</p>
     <ul>
       <li><router-link to="login">Login</router-link></li>
@@ -43,5 +43,9 @@ a {
 
 a:hover{
   color:white;
+}
+
+span{
+ color:skyblue;
 }
 </style>

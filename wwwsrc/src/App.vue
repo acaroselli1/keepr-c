@@ -21,7 +21,6 @@ export default {
   color:white;
   background-color:black;
   height:100vh;
-  margin:0%;
-  padding:0%;
+  margin:-8px -8px -8px -8px;
 }
 </style>
