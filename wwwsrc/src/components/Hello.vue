@@ -1,12 +1,11 @@
 <template>
   <div class="hello">
-    <h1>Welcome to Keepr</h1>
+    <h1>Welcome to keepr</h1>
     <p>Get Started</p>
     <ul>
       <li><router-link to="login">Login</router-link></li>
       <li><router-link to="register">Register</router-link></li>
     </ul>
-    <hr>
   </div>
 </template>
 
@@ -38,6 +37,11 @@ li {
 }
 
 a {
-  color: #42b983;
+  color: grey;
+  text-decoration:none;
+}
+
+a:hover{
+  color:white;
 }
 </style>
