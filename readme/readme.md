@@ -22,7 +22,7 @@ The main goal here is to get users logging in and creating public posts (keeps).
 
 Users will be allowed to create vaults where they can organize the posts of other users so they can recall the keeps they enjoy by looking at that paticular vault. 
 
-> Remember that a single use can have many vaults but each vault will only belong to a single user.
+> Remember that a single user can have many vaults but each vault will only belong to a single user.
 Also a vault has many keeps and keeps could have many vaults but only one author or user... 
 
 Also to make things more simplistic once a keep is marked public it can no longer be deleted.
