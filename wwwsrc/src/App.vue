@@ -22,5 +22,6 @@ export default {
   background-color:black;
   height:100vh;
   margin:-8px -8px -8px -8px;
+
 }
 </style>

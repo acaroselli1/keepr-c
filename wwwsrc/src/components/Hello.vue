@@ -1,10 +1,27 @@
 <template>
   <div class="hello">
     <h1>Welcome to <span>k</span>eepr</h1>
-    <p>Get Started</p>
     <ul>
-      <li><router-link to="login">Login</router-link></li>
-      <li><router-link to="register">Register</router-link></li>
+      <li>Login</li>
+      <li>Register</li>
+   
+    <form v-show ="registerSeen"> 
+     <input>
+     <input>  
+     <input> 
+     <input>
+     <button btn btn-default>Register</button>
+    </form>
+  
+    
+    <form v-show="loginSeen">
+    <input>
+    <input>
+    <button btn btn-default>Login</button>
+    </form>
+    
+   
+
     </ul>
   </div>
 </template>
@@ -14,6 +31,8 @@ export default {
   name: 'hello',
   data () {
     return {
+      registerSeen:false,
+      loginSeen:false
 
     }
   }
@@ -36,16 +55,18 @@ li {
   margin: 0 10px;
 }
 
-a {
+li {
   color: grey;
   text-decoration:none;
 }
 
-a:hover{
+li:hover{
   color:white;
 }
 
 span{
  color:skyblue;
 }
+
+
 </style>
