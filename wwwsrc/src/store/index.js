@@ -10,11 +10,6 @@ let api = axios.create({
   withCredentials: true
 })
 
-let auth = axios.create({
-  baseURL: '//localhost:3000/',
-  timeout: 2000,
-  withCredentials: true
-})
 
 
 vue.use(vuex)
@@ -87,6 +82,7 @@ vue.use(vuex)
 var store = new vuex.Store({
   state: {
     user: {}
+   
   },
 
 
@@ -139,8 +135,10 @@ logoutUser(state, data) {
 
 actions: {
   createUser({ commit, dispatch }, user) {
-    auth.post("/", user).then(res => {
-      if (res.data.data) {
+    console.log("before post user", user);
+    api.post("account", user).then(res => {
+      console.log("after post res", res);
+      if (res) {
         return router.push('/mainsearch')
       }
       commit('createUser', res)
@@ -149,30 +147,30 @@ actions: {
 
 
 authenticate({ commit, dispatch }) {
-  auth('/').then(res => {
-    console.log(res)
-    if (!res.data.data) {
-      return router.push('/login')
+  api('account').then(res => {
+    console.log("authenticate?",res)
+    if (!res) {
+      router.push('/')
     }
-    commit('setUser', res.data.data)
+    commit('setUser', res.data)
     router.push('/mainsearch')
   })
     .catch(err => {
       //commit('handleError', err)
-      router.push('/login')
+      router.push('/')
     })
 },
 
 login({ commit, dispatch }, user) {
-  auth.post("login", user).then(res => {
-    console.log(res)
-    if (res.data.data) {
-      return router.push('/mainsearch')
-    } else if (res.data.error) {
+  api.post("account/login", user).then(res => {
+    console.log("login?",res)
+    if (res) {
+      router.push('/mainsearch')
+    } else if (res.error) {
       alert('Invalid Username or Password')
     }
 
-    commit('setUser', res)
+    commit('setUser', res.data)
   })
     .catch(err => {
       commit('handleError', err)
@@ -180,11 +178,11 @@ login({ commit, dispatch }, user) {
 },
 
 logout({ commit, dispatch }) {
-  auth.delete("logout").then(res => {
-    if (!res.data.data) {
-      return router.push('/login')
+  api.delete("account/logout").then(res => {
+    if (!res) {
+      router.push('/')
     }
-    commit('logoutUser', res)
+    commit('logoutUser')
   })
     .catch(err => {
       commit('handleError', err)

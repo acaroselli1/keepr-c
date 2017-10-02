@@ -1,7 +1,7 @@
 <template>
   <div class="mainsearch">
  <router-link to ="/"><button class ="btn btn-primary pull-left">Back to Main</button></router-link>
- <router-link to ="/"><button class ="btn btn-primary pull-right">Logout</button></router-link>
+  <router-link to ="/"><button @click ="logout()"class ="btn btn-primary pull-right">Logout</button></router-link>
     <h1><span>k</span>eepr Main List</h1>
   </div>
 </template>
@@ -25,7 +25,9 @@ export default {
   // },
 
       methods:{
-       
+       logout(){
+           this.$store.dispatch('logout')
+        },
       }
 
 

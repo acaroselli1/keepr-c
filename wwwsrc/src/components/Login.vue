@@ -7,7 +7,7 @@
       <li @click="showRegister">Register</li>
       <li><router-link class ="browse" to="/mainsearch">Browse</router-link></li>
    
-    <form v-show ="registerShown"  @submit.prevent = "creatUser()"> 
+    <form v-show ="registerShown"  @submit.prevent = "createUser()"> 
      <input type ="text" v-model="user.name" placeholder="Username">
      <input type = "text" v-model="user.email" placeholder="Email">  
      <input type = "password" v-model="user.password" placeholder ="Password"> 
@@ -67,11 +67,9 @@ export default {
         showRegister(){
           this.registerShown = true
           this.loginShown = false
-
         },
-     
+           
         createUser() {
-                console.log(this.user)
                 this.$store.dispatch('createUser', this.user)
         },
      

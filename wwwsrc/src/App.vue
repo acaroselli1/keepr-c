@@ -5,6 +5,7 @@
 </template>
 
 <script>
+
 import Error from './components/Error'
 export default {
   name: 'app',
