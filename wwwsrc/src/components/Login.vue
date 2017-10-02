@@ -1,21 +1,22 @@
 <template>
-  <div class="hello">
+  <div class="login">
+    <img src="../assets/letterk.png">
     <h1>Welcome to <span>k</span>eepr</h1>
     <ul>
       <li @click="showLogin">Login</li>
       <li @click="showRegister">Register</li>
-      <li @click="browse">Browse</li>
+      <li><router-link class ="browse" to="/mainsearch">Browse</router-link></li>
    
-    <form v-show ="registerShown"> 
+    <form v-show ="registerShown"  @submit.prevent = "creatUser()"> 
      <input type ="text" v-model="user.name" placeholder="Username">
      <input type = "text" v-model="user.email" placeholder="Email">  
      <input type = "password" v-model="user.password" placeholder ="Password"> 
      <input type = "password" v-model="user.passwordConfirm" placeholder ="Confirm Password">
-     <button class="btn btn-primary">Register</button>
+     <button class="btn btn-primary" type="submit">Register</button>
     </form>
   
     
-    <form v-show="loginShown">
+    <form v-show="loginShown" @submit.prevent="loginUser()">
     <input type = "text" v-model="user.email" placeholder="Email">  
     <input type = "password" v-model="user.password" placeholder ="Password"> 
     <button class="btn btn-primary">Login</button>
@@ -28,8 +29,10 @@
 </template>
 
 <script>
+
+import { store } from '../store'
 export default {
-  name: 'hello',
+  name: 'login',
   data () {
     return {
      
@@ -49,6 +52,13 @@ export default {
 
     }
   },
+
+  //  mounted(){
+  //   $.get('/api/').then(data => {
+  //     this.students = data
+  //   })
+  // },
+
       methods:{
         showLogin(){
           this.loginShown = true
@@ -58,8 +68,22 @@ export default {
           this.registerShown = true
           this.loginShown = false
 
-        }
+        },
+     
+        createUser() {
+                console.log(this.user)
+                this.$store.dispatch('createUser', this.user)
+        },
+     
+        loginUser() {
+                this.$store.dispatch('login', this.user)
+        },
+     
       }
+
+
+
+
 }
 </script>
 
@@ -81,12 +105,12 @@ li {
   margin-left:1vw;
 }
 
-li {
+li, .browse {
   color: grey;
   text-decoration:none;
 }
 
-li:hover{
+li:hover, .browse:hover{
   color:white;
 }
 
@@ -95,5 +119,15 @@ span{
  text-shadow:1px 1px 8px blue;
 }
 
+input{
+  color:black;
+}
 
+img{
+  padding-top:7vh;
+}
+
+div{
+  margin:-8px -16px -8px -8px;
+}
 </style>

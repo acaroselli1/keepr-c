@@ -1,13 +1,19 @@
 <template>
   <div id="app">
-    <img src="./assets/letterk.png">
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import Error from './components/Error'
 export default {
   name: 'app',
+  components:{
+    Error
+  },
+  mounted(){
+    this.$store.dispatch('authenticate')
+  }
 }
 </script>
 
